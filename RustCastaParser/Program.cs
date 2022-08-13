@@ -1,20 +1,33 @@
-﻿var vkApi = new VkNet.VkApi();
+﻿const string domain = "rust_casta";
+const string query = "ПРОМОКОД";
+const string token = "token";
+
+var vkApi = new VkNet.VkApi();
 vkApi.Authorize(new VkNet.Model.ApiAuthParams()
 {
-	AccessToken = "752f15f9752f15f9752f15f93f763f58037752f752f15f917d95457bc2ab7f53168d7de"
+	AccessToken = token
 });
 
 var castaWall = vkApi.Wall.Search(new VkNet.Model.RequestParams.WallSearchParams()
 {
-	Domain = "rust_casta",
-	Query = "ПРОМОКОД",
+	Domain = domain,
+	Query = query,
 	Count = 1
 });
 
-#pragma warning disable CS8602
-var promo = new List<string>(from p in castaWall.WallPosts
-								  where p.Text.Contains("ПРОМОКОД")
-								  select (new List<string>(p.Text.Split("\n")).Find(s => s.Contains("ПРОМОКОД"))).Split(" ")[4]).FirstOrDefault();
-#pragma warning restore CS8602
 
-Console.WriteLine(promo);
+static string promoString(List<string> l)
+{
+	string? str = l.Find(s => s.Contains(query)); //Поиск строки с промокодом
+	return string.IsNullOrEmpty(str) ? "" : str;
+}
+
+var promo = new List<string>(from p in castaWall.WallPosts
+							  where p.Text.Contains(query) && 
+							  (DateTime.Now - p.Date) <= new TimeSpan(1, 0, 0, 0) //Отбор постов по наличию слова запроса и по дате
+							  select promoString(new List<string>(p.Text.Split("\n")))
+							  .Split(" ")[4]).FirstOrDefault(); //Выбор последнего слова с промокодом
+
+if (string.IsNullOrEmpty(promo))
+	return;
+Console.WriteLine(HttpController.PostQuery(promo));
