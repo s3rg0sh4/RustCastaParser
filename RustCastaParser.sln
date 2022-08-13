@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustCastaParser", "RustCastaParser\RustCastaParser.csproj", "{D933214B-F79C-4225-AD89-1B9C70EF0850}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D933214B-F79C-4225-AD89-1B9C70EF0850}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D933214B-F79C-4225-AD89-1B9C70EF0850}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D933214B-F79C-4225-AD89-1B9C70EF0850}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D933214B-F79C-4225-AD89-1B9C70EF0850}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {32DB88A7-F0E8-4168-AEC7-18E73BFC9DF7}
+	EndGlobalSection
+EndGlobal
